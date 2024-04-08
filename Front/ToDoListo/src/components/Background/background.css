@@ -1,0 +1,17 @@
+.display-login,
+.display-register {
+  position: absolute;
+	left: 0;
+  width: 50%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease; /* Aplica la transición en la propiedad transform */
+	z-index: 20000;
+}
+
+.display-register {
+	transform: translateX(100%);
+}
+.display-login {
+	transform: translateX(0%);
+}
