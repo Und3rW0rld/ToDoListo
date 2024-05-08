@@ -1,0 +1,78 @@
+.crear-categoria-window-overlay,
+.crear-tarea-window-overlay{
+	position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	z-index: 10000; /* Por encima de todo */
+}
+.crear-categoria-window{
+	gap: .8rem;
+}
+
+.crear-categoria-window,
+.crear-tarea-window{
+	display: flex;
+	flex-direction: column;
+	background-color: #2A2B2F;
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 30rem;
+	.crear-categoria-title,
+	.crear-tarea-title{
+		font-size: 1.8rem;
+		color: #fff;
+	}
+	
+}
+.input-crear-categoria,
+	.input-crear-tarea, .textarea-field{
+		padding: .8rem .6rem;
+		border: solid 3px #B3B3B3;
+		font-size: .8rem;
+		background-color: transparent;
+		border-radius: 10px;
+		color: #8B8FA8;
+		resize: none; /* Evitar redimensionamiento */
+}
+.form-crear-categoria{
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding-top: 1rem;
+}
+
+.btns-crear-categoria,
+	.button-container{
+		display: flex;
+		justify-content: space-between;
+		/*Estilos para los botones*/
+		button{
+			cursor: pointer;
+			font-size: .9rem;
+			border-radius: 8px;
+			color: #DCDCDC;
+			font-weight: bold;
+		}
+		.btn-save{
+			background-color: #C26004;
+			border: none;
+			padding: .8rem 3.5rem;
+			transition: background-color .3s;
+			
+		}
+		.btn-save:hover{
+			background-color: #A84D00;
+		}
+		.btn-cancel{
+			background-color: transparent;
+			border: solid 3px #B3B3B3;
+			padding: .8rem 2.5rem;
+		}
+	}

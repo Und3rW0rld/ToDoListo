@@ -7,8 +7,6 @@ import Background from '../../components/Background/Background'
 function LoginRegister() {
 	const [display, setDisplay] = React.useState('display-login')
 	
-
-
 	return (
 		<>
 		<div className="container">

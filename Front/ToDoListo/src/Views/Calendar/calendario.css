@@ -1,0 +1,107 @@
+.calendar {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: auto; /* Agrega margen a la izquierda */
+  margin-right: auto; /* Agrega margen a la derecha */
+  max-width: 1200px; /* Establece un ancho máximo */
+}
+
+.calendar h1 {
+  margin-bottom: 20px;
+}
+
+.calendar-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.month {
+  width: calc(
+    30% - 20px
+  ); /* Calcula el ancho para permitir tres meses por fila con espacio entre ellos */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.month h2 {
+  margin-bottom: 10px;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 5px 0;
+}
+
+.weekdays div {
+  width: calc(100% / 7);
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  color: #333; /* Cambia el color del texto a un tono más oscuro */
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.days div {
+  width: calc(100% / 7);
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+@media screen and (max-width: 768px) {
+  .month {
+    width: 100%;
+    margin-right: 20px; /* Añade un margen derecho */
+    margin-left: 20px; /* Añade un margen izquierdo */
+  }
+
+  .current-day {
+    width: 10px; /* Ajusta el ancho del día */
+    height: 10px; /* Ajusta la altura del día */
+    line-height: 10px; /* Centra el contenido verticalmente */
+    font-size: 8px; /* Tamaño del texto */
+  }
+
+  .current-day:hover::after {
+    width: auto; /* Ajusta el ancho del mensaje al contenido */
+    max-width: 200px; /* Establece un ancho máximo */
+    white-space: normal; /* Permitir envolver el texto */
+  }
+}
+
+.current-day {
+  background-color: #007bff;
+  color: #fff;
+  width: 18px; /* Ajusta el ancho del día */
+  height: 18px; /* Ajusta la altura del día */
+  line-height: 18px; /* Centra el contenido verticalmente */
+  border-radius: 50%;
+  font-size: 12px; /* Tamaño del texto */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  position: relative; /* Posición relativa para el contenido ::after */
+}
+
+.current-day:hover::after {
+  content: "Esta es la fecha de hoy"; /* Mensaje a mostrar */
+  position: absolute; /* Posición absoluta relativa al día */
+  background-color: #007bff; /* Color de fondo del mensaje */
+  color: #fff; /* Color del texto */
+  padding: 10px; /* Espaciado interno del mensaje */
+  border-radius: 5px; /* Borde redondeado */
+  font-size: 14px; /* Tamaño del texto */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+  bottom: 100%; /* Posición encima del día */
+  left: 50%; /* Centrado horizontal */
+  transform: translateX(-50%); /* Centrado horizontal */
+  z-index: 1; /* Para estar sobre el día */
+  width: 150px; /* Ancho del mensaje */
+}

@@ -1,0 +1,106 @@
+.menu-principal{
+	height: 100%;
+  display: flex;
+  flex-direction: column;
+	.content{
+		height: 100%;
+	}
+}
+/*menu principal*/
+
+.tabs {
+	position:relative;
+  display: flex;
+  border-bottom: 1px solid #dcdcdc;
+  margin-left: 40px; /* Ajusta los márgenes según sea necesario */
+  margin-right: 30px;
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+  
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px 20px;
+  display: flex; /* Utiliza flexbox para controlar la disposición */
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+.tab.active {
+	margin-bottom: -3px;
+  border-bottom: 2px solid #dcdcdc;
+}
+.tab .material-symbols-outlined {
+  margin-right: 15px; /* Espacio entre el icono y el texto */
+}
+
+.options-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinea las opciones a la derecha */
+}
+
+.option {
+  cursor: pointer;
+  display: inline-flex; /* Mostrar en línea */
+  align-items: center; /* Alinear verticalmente */
+  margin-right: 20px; /* Ajustar margen derecho */
+}
+
+.options-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinea las opciones a la derecha */
+  margin-left: auto; /* Mueve el contenedor hacia la derecha */
+}
+
+.create-task-btn {
+  background-color: #007bff; /* Fondo azul */
+  color: white; /* Texto blanco */
+  border: 2px solid #007bff; /* Borde azul */
+  border-radius: 20px; /* Contorno redondeado */
+  padding: 8px 16px; /* Espaciado interno */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  margin-bottom: 4px;
+}
+
+.create-task-btn:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+}
+
+.supIcon {
+  margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+@media screen and (max-width: 490px) {
+  .tabs {
+    display: flex;
+    flex-direction: column; /* Cambiar la dirección a columna */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    border-bottom: 1px solid #dcdcdc;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; /* Alinear el texto al centro */
+  }
+
+  .tab {
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .options-right {
+    text-align: center; /* Alinear los elementos al centro */
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Cambiar la dirección a columna */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-right: none;
+
+  }
+
+  .options-right .option {
+    margin-right: 0; /* Eliminar el margen derecho */
+    margin-bottom: 10px; /* Ajustar el margen inferior */
+  }
+}

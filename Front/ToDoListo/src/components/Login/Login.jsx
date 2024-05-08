@@ -1,9 +1,11 @@
 import './login.css'
 import Input from '../Input/Input'
 import { useState } from 'react';
-import { loginUser } from '../../client';
+import { fetchUserEmail, loginUser } from '../../client';
+import { useNavigate } from 'react-router-dom';
 
-function Login( {setDisplay} ) {
+function Login( { setDisplay } ) {
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -12,19 +14,30 @@ function Login( {setDisplay} ) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const user = formData;
-		const response = loginUser(user)
-			.then(() =>{
-				console.log('Iniciando sesion...');
-				window.location.href = '/home';
-			})
-			.catch(err => {
-				
-				console.log(err.response);
-				if(err.response.status === 401){
-					alert('Usuario o contraseña incorrectos');
-				}
-			})
-		
+		loginUser(user)
+        .then(userId => {
+            console.log('Inicio de sesión exitoso. ID del usuario:', userId);
+            // Obtener el correo electrónico del usuario después de iniciar sesión
+            localStorage.setItem('userId', userId);
+						return fetchUserEmail(userId);
+        })
+        .then(email => {
+            console.log('Correo electrónico del usuario:', email);
+            const userStorage = {
+                username: user.username,
+                email: email,
+            };
+            localStorage.setItem('user', JSON.stringify(userStorage));
+            navigate('/menuPrincipal');
+        })
+        .catch(error => {
+            console.error(error.message);
+            if (error.message === "Inicio de sesión fallido") {
+                alert('Usuario o contraseña incorrectos');
+            } else {
+                alert('Error al iniciar sesión');
+            }
+        });
 	}
 	const handleChange =(e)=>{
 		e.preventDefault();
@@ -44,7 +57,7 @@ function Login( {setDisplay} ) {
 				<Input text="Nombre de usuario" type="Text" name="username" onChange={handleChange} value={formData.username}/>
 				<Input text="Contraseña" type="Text" name="password" onChange={handleChange} value={formData.password}/>
 				<div className="btn-login-container">
-					<button type="submit">
+					<button type="submit" className='form-button'>
 						Entrar
 						<span className='icon-arrow'></span>
 					</button>

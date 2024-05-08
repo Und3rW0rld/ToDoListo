@@ -1,0 +1,48 @@
+/*Menu lateral izquierdo*/
+.menu-lateral-izquierdo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom:0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #1c1d22;
+  width: 80px;
+  align-items: center;
+	.logo{
+		width: 5rem;
+		margin-top: 1.5rem;
+		padding: 0;
+		img{
+			object-fit:fill;
+			width: 100%;
+		}
+	}
+  gap: 2rem;
+	button {
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+		font-size: 24px; /* Tamaño del icono */
+		color: white; /* Color del icono */
+		position: relative; /* Necesario para el posicionamiento de los pseudo-elementos */
+	}
+}
+
+.menu-lateral-izquierdo button:hover::before {
+  content: ''; /* Se requiere contenido para mostrar el pseudo-elemento */
+  position: absolute;
+  top: 50%; /* Coloca la bolita en el centro vertical */
+  left: 50%; /* Coloca la bolita en el centro horizontal */
+  transform: translate(-50%, -50%); /* Centra la bolita con respecto al logo */
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%; /* Forma de bolita */
+  background-color: rgba(255, 255, 255, 0.11); /* Color de la bolita */
+}
+
+.logout-btn {
+  margin-top: auto; /* El botón se colocará al final del contenedor */
+  margin-bottom: 1.5rem;
+}

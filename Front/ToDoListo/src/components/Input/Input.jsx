@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function Input({ text, type, name, onChange, value}) {
 	return (
 		<div className="entryarea">
-			<input type={ type } name={ name } onChange={onChange} value={value} id="" required/>
+			<input className='myInput' type={ type } name={ name } onChange={onChange} value={value} id="" required/>
 			<div className="labelline">{ text }</div>
 		</div>
 	)

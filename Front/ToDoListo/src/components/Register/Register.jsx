@@ -2,7 +2,6 @@ import './register.css';
 import Input from '../Input/Input';
 import { useState } from 'react';
 import { createUser } from '../../client';
-import { successNotification } from '../../Notification';
 
 function Register({ setDisplay }) {
     const [formData, setFormData] = useState({
@@ -58,7 +57,7 @@ function Register({ setDisplay }) {
         }
 
         // Si todas las verificaciones pasan, puedes enviar los datos del formulario al servidor o realizar otras acciones
-				const user = formData;
+		const user = formData;
 		createUser(user)
 			.then(() =>{
 				console.log('Usuario creado');
@@ -84,7 +83,7 @@ function Register({ setDisplay }) {
                 <Input text="Contraseña" type="password" name="password" onChange={handleChange} value={formData.password}/>
                 {passwordError && <p className="error-message">{passwordError}</p>}
                 <div className="btn-register-container">
-                    <button type="submit">
+                    <button type="submit" className='form-button'>
                         Registrar
                         <span className='icon-arrow'></span>
                     </button>

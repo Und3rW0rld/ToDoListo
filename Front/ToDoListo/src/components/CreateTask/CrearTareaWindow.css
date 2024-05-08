@@ -1,0 +1,68 @@
+.crear-tarea-window{
+  gap: 1.4rem;
+}
+
+.separator{
+  margin-bottom: 1rem;
+}
+
+.btn-crear-categoria{
+  background-color: transparent;
+  border: none;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .check-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 2.4rem;
+    .checkbox{
+      display: none;
+    }
+    label{
+      color: #8B8FA8;
+      font-size: 1rem;
+      
+    }
+    label::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(-0%, -50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 3px solid #B3B3B3; /* Borde del icono */
+      background-color: transparent; /* Fondo del icono */
+      border-radius: 10px;
+    }
+    .checkbox:checked + label::before {
+      background-color: #8B8FA8; /* Cambiar el fondo cuando está marcado */
+    }
+    
+  }
+  
+}
+
+
+.group-inputs-task{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  .input-date{
+    width: 50%;
+  }
+  .input-category{
+    width: 50%;
+  }
+}
+
+.textarea-field{
+  margin-top: 1.5rem;
+  min-height: 6rem;
+}
