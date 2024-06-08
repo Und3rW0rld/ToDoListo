@@ -2,6 +2,8 @@
 
 ToDoListo es una aplicación de gestión de tareas simple y efectiva diseñada para ayudarte a organizar tu vida y maximizar tu productividad. Con una interfaz intuitiva y funcionalidades esenciales, ToDoListo te permite crear, editar y eliminar tareas, establecer prioridades y plazos, y marcar tareas completadas de manera rápida y sencilla.
 
+![image](https://github.com/Und3rW0rld/ToDoListo/assets/117226776/9e35baac-1de0-4653-8a22-d0c94a550ed1)
+
 ## Características
 
 - **Crear Tareas**: Agrega nuevas tareas con un solo clic.
@@ -42,8 +44,11 @@ Para instalar y ejecutar ToDoListo localmente, sigue estos pasos:
 
 ## Uso
 
-1. Abre tu navegador web y ve a `http://localhost:3000`.
+1. Abre tu navegador web y ve a `http://localhost:5173`.
 2. Empieza a agregar y gestionar tus tareas.
+
+![image](https://github.com/Und3rW0rld/ToDoListo/assets/117226776/c476d189-5ab6-4617-a49f-9ab80584c843)
+
 
 ## Contacto
 
