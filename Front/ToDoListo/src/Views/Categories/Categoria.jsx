@@ -4,7 +4,7 @@ import "./Categoria.css";
 import { useState } from "react";
 import taskMenu from "../../assets/task-menu.svg";
 
-function Categoria ({ categoria, categorias, setCategorias, index, handleEliminarCategoria }) {
+function Categoria ({ categoria, categorias, setCategorias, index, handleEliminarCategoria, handleEditarCategoria }) {
 
 	const [showMenu, setShowMenu] = useState(false);
 	
@@ -20,8 +20,11 @@ function Categoria ({ categoria, categorias, setCategorias, index, handleElimina
 	};
 
 	const handleOptionClick = (option) => {
-    if(option === "Eliminar"){
+    	if(option === "Eliminar"){
 			handleEliminarCategoria(index);
+		}
+		else if (option === "Editar"){
+			handleEditarCategoria(index);
 		}
   };
 
@@ -93,7 +96,8 @@ Categoria.propTypes = {
 	categorias: PropTypes.array.isRequired,
 	setCategorias: PropTypes.func.isRequired,
 	index: PropTypes.number.isRequired,
-	handleEliminarCategoria: PropTypes.func.isRequired
+	handleEliminarCategoria: PropTypes.func.isRequired,
+	handleEditarCategoria: PropTypes.func.isRequired
 };
 
 export default Categoria;
