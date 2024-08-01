@@ -4,7 +4,7 @@ import CrearTareaWindow from "../CreateTask/CrearTareaWindow";
 import "./MenuPrincipal.css";
 import supIcon from "../../assets/sup-icon.svg";
 import { useState, useEffect } from "react";
-import { createCategory, createTask, getAllCategories } from "../../client";
+import { createCategory, createTask, getAllCategories, updateTask } from "../../client";
 
 const MenuPrincipal = () => {
   const [activeTab, setActiveTab] = useState("consultarTareas");
@@ -33,6 +33,16 @@ const MenuPrincipal = () => {
     createTask(nuevaTarea).then(() => {
       console.log("Tarea creada!");
       alert("Tarea creada exitosamente");
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+  };
+
+  const actualizarTarea = (id, task) => {
+    updateTask(id, task).then(() => {
+      console.log("Tarea editada!");
+      alert("Tarea editada exitosamente");
     })
     .catch((err) => {
       console.log(err.response);

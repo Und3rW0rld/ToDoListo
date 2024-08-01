@@ -1,5 +1,6 @@
 package com.todolisto.taskapp.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,7 +27,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "task_category", // Nombre de la tabla de unión
             joinColumns = @JoinColumn(name = "task_id"), // Columna que referencia a la entidad Task

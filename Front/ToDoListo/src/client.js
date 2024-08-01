@@ -114,3 +114,24 @@ export const getAllTask = (id) => {
 			throw error; // Lanzar el error para manejarlo en otro lugar si es necesario
 		});
 };
+
+export const updateTask = (id, task) => {
+	return fetch(`http://localhost:8080/api/v1/edit_task/${id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(task)
+		
+	}).then(checkStatus);
+}
+
+export const deleteTask = (id) => {
+	return fetch(`http://localhost:8080/api/v1/delete_task/${id}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		
+	}).then(checkStatus);
+}

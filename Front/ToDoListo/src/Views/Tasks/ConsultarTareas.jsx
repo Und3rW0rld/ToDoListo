@@ -65,20 +65,20 @@ const ConsultarTareas = ({ categorias, agregarTarea, handleCategoriaSubmit }) =>
           <div className="todo-tasks task-group">
             <h3 className="task-status-title">Por hacer ({tareasPorHacer.length})</h3>
             {tareasPorHacer.map((tarea, index) => (
-              <Task key={index} tarea={tarea}/>
+              <Task key={index} tarea={tarea} categorias={categorias} handleCategoriaSubmit={handleCategoriaSubmit}/>
               
             ))}
           </div>
           <div className="tareas-habituales task-group">
           <h3 className="task-status-title">Terminadas ({tareasCompletadas.length})</h3>
             {tareasCompletadas.map((tarea, index) => (
-              <Task key={index} tarea={tarea}/>
+              <Task key={index} tarea={tarea} categorias={categorias} handleCategoriaSubmit={handleCategoriaSubmit}/>
             ))}
           </div>
           <div className="tareas-poco-importantes task-group">
           <h3 className="task-status-title">Expiradas ({tareasPendientes.length})</h3>
           {tareasPendientes.map((tarea, index) => (
-              <Task key={index} tarea={tarea}/>
+              <Task key={index} tarea={tarea} categorias={categorias} handleCategoriaSubmit={handleCategoriaSubmit}/>
             ))}
           </div>
           </div>
