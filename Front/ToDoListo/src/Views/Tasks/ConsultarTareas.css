@@ -77,6 +77,9 @@
     border-radius: 12px;
     padding:0  2rem ;
     font-size: 1rem;
+
+    
+
     .name-container{
       display: flex;
       position: relative;
@@ -137,6 +140,7 @@
     .date-container{
       display: flex;
       padding: 1.5rem 0;
+      justify-content: space-between;
       .task-date{
         color: #989CAA;
         background-color: rgba(255, 255, 255, 0.05);
@@ -144,6 +148,19 @@
         font-weight:bolder;
         font-size: .9rem;
         border-radius: 17px;
+      }
+      .task-state{
+        background-color: #B86E00;
+        padding: 0 .5rem;
+        color: #fff;
+        font-size: .9rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        transition: all .3s;
+      }
+      .task-state:hover{
+        background-color: #b86e00d3;
       }
     }
     .task-priority{
@@ -174,6 +191,7 @@
         border: #00B812 2px solid;
         border-radius: 2px
       }
+      
     }
   }
 }

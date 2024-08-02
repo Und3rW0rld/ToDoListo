@@ -31,6 +31,7 @@ const Task = ({ tarea, categorias, handleCategoriaSubmit }) => {
 
   const editarTarea = (tarea) => {
     console.log(tarea)
+    
     updateTask(tarea.task_id, tarea).then(() => {
       console.log("Tarea editada!");
       alert("Tarea editada exitosamente");
@@ -44,6 +45,25 @@ const Task = ({ tarea, categorias, handleCategoriaSubmit }) => {
   const handleCrearTareaWindowClose = () => {
     setShowEditarTarea(false);
   };
+
+  const handleFinalizarTarea = () => {
+    tarea.state = "COMPLETED";
+
+    // Transformar el array de objetos categories a un array de strings
+    const categoryNames = tarea.categories.map(category => category.name);
+    const tareaActualizada = { ...tarea, categories: categoryNames };
+
+    console.log("Objeto tarea enviado al backend:", JSON.stringify(tareaActualizada, null, 2)); // Agrega este log
+
+    updateTask(tarea.task_id, tareaActualizada).then(() => {
+        console.log("Tarea finalizada!");
+        alert("Tarea finalizada exitosamente");
+    })
+    .catch((err) => {
+        console.log("Error en la solicitud de actualización de tarea:", err.response);
+    });
+    location.reload()
+};
 
   const handleOptionClick = (option) => {
     if (option == "Editar") {
@@ -76,6 +96,7 @@ const Task = ({ tarea, categorias, handleCategoriaSubmit }) => {
           <ul className="menu-options">
             <li onClick={() => handleOptionClick("Editar")}>Editar</li>
             <li onClick={() => handleOptionClick("Eliminar")}>Eliminar</li>
+            
             {/* Puedes agregar más opciones según tus necesidades */}
           </ul>
         )}
@@ -116,7 +137,11 @@ const Task = ({ tarea, categorias, handleCategoriaSubmit }) => {
       </div>
       <div className="date-container">
         <p className="task-date">{tarea.date}</p>
+        {tarea.state === "TO_DO" && (
+        <button className="task-state to-do" onClick={handleFinalizarTarea}>Finalizar tarea</button>
+      )}
       </div>
+      
       {showEditarTarea && (
           <CrearTareaWindow
             tarea={tarea}

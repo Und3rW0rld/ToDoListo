@@ -125,10 +125,7 @@ public class UserController {
         if (userOpt.isPresent()){
             User user = userOpt.get();
             profileImg = user.getImagen();
-            System.out.println("USUARIO:");
-            System.out.println(user);
         }
-        System.out.println("HOLAAAAAA");
         return ResponseEntity.ok().body(profileImg);
     }
 
