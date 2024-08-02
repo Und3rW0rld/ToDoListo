@@ -23,6 +23,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String imagen;
 
 
     @JsonIgnore
@@ -33,4 +34,15 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Category> categories = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", tasks=" + tasks +
+                ", categories=" + categories +
+                '}';
+    }
 }
