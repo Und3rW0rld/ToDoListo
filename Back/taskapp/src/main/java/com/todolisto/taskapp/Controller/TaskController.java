@@ -82,6 +82,7 @@ public class TaskController {
 
     @PutMapping("/edit_task/{taskId}")
     public ResponseEntity<Task> editTask(@PathVariable Long taskId, @RequestBody TaskRequest taskRequest) {
+        System.out.println("Request recibido: " + taskRequest); // Agrega este log
         Optional<Task> optionalTask = taskService.findById(taskId);
         if (!optionalTask.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
