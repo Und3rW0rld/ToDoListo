@@ -1,7 +1,7 @@
 import "./CrearTareaWindow.css";
 import PropTypes from 'prop-types';
 import CrearCategoriasWindow from "../CreateCategory/CrearCategoriasWindow";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import addIcon from "../../assets/add-icon.svg";
 
 const CrearTareaWindow = ({
@@ -9,7 +9,19 @@ const CrearTareaWindow = ({
   categorias,
   onNuevaTarea,
   handleCategoriaSubmit,
+  onEditarTarea,
+  tarea
 }) => {
+
+  const [isEdited, setIsEdited] = useState(false)
+
+  useEffect(() => {
+    if (tarea != null) {
+      console.log("No esta nulo")
+      setIsEdited(true)
+    }
+  }, [])
+
   const [showCrearCategoriaWindow, setShowCrearCategoriaWindow] =
     useState(false);
   const [nuevaTarea, setNuevaTarea] = useState({
@@ -39,6 +51,30 @@ const CrearTareaWindow = ({
     });}
   };
 
+  const handleEditarTarea = () => {
+    if (nuevaTarea.taskName != "") {
+      tarea.taskName = nuevaTarea.taskName
+    }
+
+    if (nuevaTarea.priority != "") {
+      tarea.priority = nuevaTarea.priority
+    }
+
+    if (nuevaTarea.date != "") {
+      tarea.date = nuevaTarea.date
+    }
+
+    if (nuevaTarea.categories.length > 0) {
+      tarea.categories = nuevaTarea.categories
+    }
+
+    if (nuevaTarea.description != "") {
+      tarea.description= nuevaTarea.description
+    }
+
+    onEditarTarea(tarea)
+  }
+
   const handleGuardarClick = () => {
     onNuevaTarea(nuevaTarea);
     setNuevaTarea({
@@ -59,11 +95,11 @@ const CrearTareaWindow = ({
   return (
     <div className="crear-tarea-window-overlay">
       <div className="crear-tarea-window">
-        <h2 className="crear-tarea-title">Crear Nueva Tarea</h2>
+        <h2 className="crear-tarea-title">{isEdited ? "Editar tarea" : "Crear tarea"}</h2>
         <hr className="separator" />
         <input
           type="text"
-          placeholder="Nombre de la tarea"
+          placeholder={isEdited ? tarea.taskName : "Nombre de la tarea"}
           className="input-crear-tarea"
           name="taskName"
           value={nuevaTarea.name}
@@ -80,7 +116,7 @@ const CrearTareaWindow = ({
               onChange={handleInputChange}
               checked={nuevaTarea.priority === "IMPORTANT"}
             />
-            <label htmlFor="importante">Importante</label>
+            <label htmlFor="importante" className={isEdited ? tarea.priority == "IMPORTANT" ? "poderoso" : "" : ""}>Importante</label>
           </div>
           <div className="check-item">
             <input
@@ -92,7 +128,7 @@ const CrearTareaWindow = ({
               onChange={handleInputChange}
               checked={nuevaTarea.priority === "HABITUAL"}
             />
-            <label htmlFor="habitual">Habitual</label>
+            <label htmlFor="habitual" className={isEdited ? tarea.priority == "HABITUAL" ? "poderoso" : "" : ""}>Habitual</label>
           </div>
           <div className="check-item">
             <input
@@ -104,7 +140,7 @@ const CrearTareaWindow = ({
               onChange={handleInputChange}
               checked={nuevaTarea.priority === "NO_IMPORTANT"}
             />
-            <label htmlFor="poco-importante">Poco Importante</label>
+            <label htmlFor="poco-importante" className={isEdited ? tarea.priority == "NO_IMPORTANT" ? "poderoso" : "" : ""}>Poco Importante</label>
           </div>
         </div>
         <div className="group-inputs-task">
@@ -139,14 +175,14 @@ const CrearTareaWindow = ({
         </div>
 
         <textarea
-          placeholder="Ingresa una descripción de la tarea"
+          placeholder={isEdited ? tarea.description : "Ingresa una descripción de la tarea"}
           className="textarea-field"
           name="description"
           value={nuevaTarea.description}
           onChange={handleInputChange}
         />
         <div className="button-container">
-          <button className="btn-save" onClick={handleGuardarClick}>
+          <button className="btn-save" onClick={isEdited ? handleEditarTarea : handleGuardarClick}>
             Guardar Cambios
           </button>
           <button className="btn-cancel" onClick={handleCancelClick}>

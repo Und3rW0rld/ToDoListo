@@ -3,8 +3,10 @@ import { useState } from 'react';
 import taskMenu from '../../assets/task-menu.svg';
 import dropDown from '../../assets/arrow_drop_down.svg';
 import dropUp from '../../assets/arrow_drop_up.svg';
+import {updateTask, deleteTask} from "../../client";
+import CrearTareaWindow from '../CreateTask/CrearTareaWindow';
 
-const Task = ({ tarea }) => {
+const Task = ({ tarea, categorias, handleCategoriaSubmit }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   const toggleDescription = () => {
@@ -12,6 +14,8 @@ const Task = ({ tarea }) => {
   };
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const [showEditarTarea, setShowEditarTarea] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -25,7 +29,37 @@ const Task = ({ tarea }) => {
 		}
 	};
 
+  const editarTarea = (tarea) => {
+    console.log(tarea)
+    updateTask(tarea.task_id, tarea).then(() => {
+      console.log("Tarea editada!");
+      alert("Tarea editada exitosamente");
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+    setShowEditarTarea(false)
+  }
+
+  const handleCrearTareaWindowClose = () => {
+    setShowEditarTarea(false);
+  };
+
   const handleOptionClick = (option) => {
+    if (option == "Editar") {
+      setShowEditarTarea(true)
+    }
+    if (option == "Eliminar") {
+      deleteTask(tarea.task_id).then(() => {
+        console.log("Tarea eliminada!");
+        location.reload()
+        alert("Tarea eliminada exitosamente");
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  
+    }
     // Aquí puedes agregar la lógica para manejar la opción seleccionada
     console.log("Opción seleccionada:", option);
     // Por ejemplo, podrías llamar a funciones específicas para cada opción
@@ -83,6 +117,15 @@ const Task = ({ tarea }) => {
       <div className="date-container">
         <p className="task-date">{tarea.date}</p>
       </div>
+      {showEditarTarea && (
+          <CrearTareaWindow
+            tarea={tarea}
+            onClose={handleCrearTareaWindowClose}
+            categorias={categorias}
+            onEditarTarea={editarTarea}
+            handleCategoriaSubmit={handleCategoriaSubmit}
+          />
+        )}
     </div>
   );
 };
