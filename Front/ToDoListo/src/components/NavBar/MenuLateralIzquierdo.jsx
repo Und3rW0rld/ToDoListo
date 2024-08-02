@@ -12,7 +12,7 @@ function MenuLateralIzquierdo() {
   const navigate = useNavigate();
   const handleLogout = () => {
     console.log("Logout");
-    navigate("/login");
+    navigate("/");
   }
 
   return (
