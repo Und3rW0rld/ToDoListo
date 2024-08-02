@@ -4,7 +4,7 @@ import CrearTareaWindow from "../CreateTask/CrearTareaWindow";
 import "./MenuPrincipal.css";
 import supIcon from "../../assets/sup-icon.svg";
 import { useState, useEffect } from "react";
-import { createCategory, createTask, getAllCategories, updateTask } from "../../client";
+import { createCategory, createTask, getAllCategories, updateTask, updateCategory } from "../../client";
 
 const MenuPrincipal = () => {
   const [activeTab, setActiveTab] = useState("consultarTareas");
@@ -25,6 +25,20 @@ const MenuPrincipal = () => {
     setCategorias([...categorias, nuevaCategoria]);
     
   };
+  const handleCategoriaUpdate = (categoriaAnterior, nuevaCategoria) => {
+    const user_id = localStorage.getItem("userId");
+    const categoria = { name: nuevaCategoria, userId: user_id };
+    const index = categorias.indexOf(categoriaAnterior);
+    updateCategory(categoriaAnterior, categoria)
+      .then(() => {
+        console.log("Categoria editada!");
+        alert("Categoria actualizada exitosamente");
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+    categorias[index] = nuevaCategoria;
+  }
 
   const agregarTarea = (nuevaTarea) => {
     const user_id = localStorage.getItem("userId");
@@ -105,7 +119,8 @@ const MenuPrincipal = () => {
           />
         )}
         {activeTab === "categorias" && (
-          <Categorias categorias={categorias} setCategorias={setCategorias} handleCategoriaSubmit={handleCategoriaSubmit}/>
+          <Categorias categorias={categorias} setCategorias={setCategorias} handleCategoriaSubmit={handleCategoriaSubmit}
+          handleCategoriaUpdate={handleCategoriaUpdate} editable={true}/>
         )}
         {activeTab === "crearTarea" && (
           <CrearTareaWindow

@@ -91,6 +91,17 @@ export const deleteCategory = category => {
 	}).then(checkStatus);
 };
 
+export const updateCategory = (previous, category) => {
+	console.log(category)
+	return fetch(`http://localhost:8080/api/v1/update_category/${previous}`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(category)
+	}).then(checkStatus);
+};
+
 export const createTask = (nuevaTarea) => {
 	return fetch("http://localhost:8080/api/v1/create_task", {
 		method: "POST",
@@ -99,7 +110,7 @@ export const createTask = (nuevaTarea) => {
 		},
 		body: JSON.stringify(nuevaTarea)
 	}).then(checkStatus);	
-}
+};
 
 export const getAllTask = (id) => {
 	return fetch(`http://localhost:8080/api/v1/get_tasks/${id}`)

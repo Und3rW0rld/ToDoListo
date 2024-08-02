@@ -6,8 +6,10 @@ import {  deleteCategory } from "../../client";
 import Categoria from "./Categoria";
 import "./Categorias.css";
 
-const Categorias = ({ categorias, setCategorias, handleCategoriaSubmit }) => {
+const Categorias = ({ categorias, setCategorias, handleCategoriaSubmit, handleCategoriaUpdate }) => {
   const [mostrarCrearCategoria, setMostrarCrearCategoria] = useState(false);
+  const [mostrarEditarCategoria, setMostrarEditarCategoria] = useState(false);
+  const [previousName, setPreviousName] = useState("");
 
   const handleToggleCrearCategoria = () => {
     setMostrarCrearCategoria(!mostrarCrearCategoria);
@@ -21,6 +23,12 @@ const Categorias = ({ categorias, setCategorias, handleCategoriaSubmit }) => {
     const updatedCategorias = categorias.filter((_, i) => i !== index);
     setCategorias(updatedCategorias);
   };
+
+  const handleEditarCategoria = (index) => {
+    const cat = categorias[index];
+    setPreviousName(cat);
+    setMostrarEditarCategoria(!mostrarEditarCategoria);
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -41,6 +49,7 @@ const Categorias = ({ categorias, setCategorias, handleCategoriaSubmit }) => {
               categorias={categorias}
               setCategorias={setCategorias}
               handleEliminarCategoria={handleEliminarCategoria}
+              handleEditarCategoria={handleEditarCategoria}
               index={index}
             />
           ))}
@@ -49,6 +58,16 @@ const Categorias = ({ categorias, setCategorias, handleCategoriaSubmit }) => {
             <CrearCategoriasWindow
               onCategoriaSubmit={handleCategoriaSubmit}
               onClose={() => {setMostrarCrearCategoria(false)}}
+              previousName={"Ingresa el nombre de la categoría"}
+              isEdited={false}
+            />
+          )}
+          {mostrarEditarCategoria && (
+            <CrearCategoriasWindow
+              onCategoriaSubmit={handleCategoriaUpdate}
+              onClose={() => {setMostrarEditarCategoria(false); setPreviousName("")}}
+              previousName={previousName}
+              isEdited={true}
             />
           )}
         </div>

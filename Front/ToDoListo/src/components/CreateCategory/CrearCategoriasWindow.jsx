@@ -2,12 +2,14 @@ import { useState } from "react";
 import "./CrearCategoriasWindow.css";
 import PropTypes from "prop-types";
 
-const CrearCategoriasWindow = ({ onCategoriaSubmit, onClose }) => {
+const CrearCategoriasWindow = ({ onCategoriaSubmit, onClose, previousName, isEdited }) => {
 
 
 CrearCategoriasWindow.propTypes = {
   onCategoriaSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  previousName: PropTypes.string,
+  isEdited: PropTypes.bool
 };
   const [nuevaCategoria, setNuevaCategoria] = useState("");
 
@@ -17,11 +19,15 @@ CrearCategoriasWindow.propTypes = {
 
   const handleCategoriaSubmit = (e) => {
     e.preventDefault();
-    if (nuevaCategoria.trim() !== "") {
+    if (nuevaCategoria.trim() !== "" && !isEdited) {
       onCategoriaSubmit(nuevaCategoria);
       setNuevaCategoria("");
       onClose();
-    }else{
+    } else if (nuevaCategoria.trim() !== "" && isEdited){
+      onCategoriaSubmit(previousName, nuevaCategoria);
+      setNuevaCategoria("");
+      onClose();
+    } else{
       alert("Por favor introduce un nombre de categoría válido");
     }
   };
@@ -35,7 +41,7 @@ CrearCategoriasWindow.propTypes = {
         <input
           className="input-crear-categoria"
           type="text"
-          placeholder="Ingresa el nombre de la categoría"
+          placeholder={previousName}
           value={nuevaCategoria}
           onChange={handleCategoriaChange}
         />

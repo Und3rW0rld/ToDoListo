@@ -41,4 +41,16 @@ public class CategoryController {
         return new ResponseEntity<>("Category deleted successfully",  HttpStatus.OK);
     }
 
+    @PostMapping("/update_category/{name}")
+    public ResponseEntity<Category> updateCategory(@PathVariable String name, @RequestBody CategoryRequest categoryRequest) {
+        long user_id = categoryRequest.getUserId();
+        Category category = categoryService.getCategoryByName(name);
+        String categoryName = categoryRequest.getName();
+        User user = userRepository.getUserByUserId(user_id);
+        category.setName(categoryName);
+        category.setUser(user);
+        Category updatedCategory = categoryService.createCategory(category);
+        return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
+    }
+
 }
