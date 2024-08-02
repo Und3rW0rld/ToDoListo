@@ -146,3 +146,43 @@ export const deleteTask = (id) => {
 		
 	}).then(checkStatus);
 }
+
+export const updateUser = (id, user) => {
+	return fetch(`http://localhost:8080/api/v1/edit_user/${id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(user)
+		
+	}).then(checkStatus);
+}
+
+export const uploadProfileImage = (id, formData) =>
+	fetch(`http://localhost:8080/api/v1/upload/profile-image/${id}`, {
+			method: "POST",
+			body: formData
+	}).then(checkStatus)
+	.then(response => response.text())
+	.catch(error => {
+			throw new Error("Error al subir la imagen: " + error.message);
+	});
+
+	export const getProfileImg = (id) => {
+		return fetch(`http://localhost:8080/api/v1/img_path/${id}`)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.text(); // Obtener el texto de la respuesta
+			})
+			.then(url => {
+				console.log('URL de la imagen:', url);
+				return url; // Devolver solo la URL
+			})
+			.catch(error => {
+				console.error('Error al obtener la imagen:', error);
+				throw error; // Lanzar el error para manejarlo en otro lugar si es necesario
+			});
+	};
+	
