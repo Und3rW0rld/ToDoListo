@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -33,7 +34,15 @@ public class UserService {
         return userRepository.getUserByUserId(id).getCategories();
     }
 
+    public Optional<User> findUserById (long id){
+        return userRepository.findById(id);
+    }
+
     public List<Task> getAllUserTasksById(long id) {
         return userRepository.getUserByUserId(id).getTasks();
+    }
+
+    public User updateUser(User user){
+        return userRepository.save(user);
     }
 }
