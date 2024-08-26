@@ -52,7 +52,7 @@ Para instalar y ejecutar ToDoListo localmente, sigue estos pasos:
 
 ## Contacto
 
-Para cualquier consulta, sugerencia o comentario, no dudes en ponerte en contacto con nosotros a través de [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com).
+Para cualquier consulta, sugerencia o comentario, no dudes en ponerte en contacto con nosotros a través de softwareashen@gmail.com.
 
 ---
 
